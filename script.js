@@ -71,6 +71,7 @@ function draw() {
 
 function buildLevel() {
     level++
+    balls++
     brickcount = 120
     for(let x=0; x<20; x++) {
         for(let y=0; y<6; y++) {

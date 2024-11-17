@@ -97,7 +97,6 @@ class Brick {
                 this.on = false
                 brickcount--
                 score+=10
-                balls++
                 ball.velY = 0-ball.velY
                 ball.x += ball.velX
                 ball.y += ball.velY
