@@ -1,7 +1,7 @@
 class Paddle {
-    constructor() {
-        this.x = width/2
-        this.y = height*0.95
+    constructor(x=width/2, y=height*0.95) {
+        this.x = x
+        this.y = y
     }
     draw() {
         push()
@@ -28,12 +28,12 @@ class Paddle {
 }
 
 class Ball {
-    constructor() {
-        this.x = width/2
-        this.y = height/2
+    constructor(x=width/2, y=height/2, velX=0, velY=height/100) {
+        this.x = x
+        this.y = y
 
-        this.velX = 0
-        this.velY = height/100
+        this.velX = velX
+        this.velY = velY
     }
     draw() {
         push()
@@ -77,11 +77,11 @@ class Ball {
 }
 
 class Brick {
-    constructor(x, y, color) {
+    constructor(x, y, color, on=true) {
         this.x = x
         this.y = y
         this.color = color
-        this.on = true
+        this.on = on
     }
     draw() {
         push()

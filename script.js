@@ -14,15 +14,7 @@ function setup() {
     colorMode(HSB, 100)
     noStroke()
 
-    paddle = new Paddle()
-    ball = new Ball()
-
-    balls = 5
-    score = 0
-    level = 0
-    brickcount = 0
-
-    paused = true
+    loadGame()
 
     background(0)
 }
@@ -43,6 +35,7 @@ function draw() {
         bricks.forEach((b) => {
             if(b.on) b.draw()
         })
+        if(frameCount%10 == 0) saveGame()
     } else {
         background(0)
         fill('white')
@@ -66,7 +59,6 @@ function draw() {
         }
     }
     data()
-    
 }
 
 function buildLevel() {
@@ -93,4 +85,50 @@ function data() {
     textSize(width/65)
     textAlign(LEFT, TOP)
     text("SCORE: "+score+"   |   LEVEL: "+level, x, 5)
+}
+
+function saveGame() {
+    localStorage.setItem("paddle", JSON.stringify(paddle))
+    localStorage.setItem("ball", JSON.stringify(ball))
+    localStorage.setItem("bricks", JSON.stringify(bricks))
+    localStorage.setItem("brickcount", JSON.stringify(brickcount))
+    localStorage.setItem("balls", JSON.stringify(balls))
+    localStorage.setItem("score", JSON.stringify(score))
+    localStorage.setItem("level", JSON.stringify(level))
+}
+
+function loadGame() {
+    let temp = JSON.parse(localStorage.getItem("balls"))
+    if (temp === undefined || temp === 0 || temp === null) {
+        paddle = new Paddle()
+        ball = new Ball()
+
+        balls = 5
+        score = 0
+        level = 0
+        brickcount = 0
+        bricks = []
+
+        paused = true
+    } else {
+        paddle = JSON.parse(localStorage.getItem("paddle"))
+        paddle = new Paddle(paddle.x, paddle.y)
+
+        ball = JSON.parse(localStorage.getItem("ball"))
+        ball = new Ball(ball.x, ball.y, ball.velX, ball.velY)
+
+        bricks = JSON.parse(localStorage.getItem("bricks"))
+        let i = 0
+        bricks.forEach((b) => {
+            bricks[i] = new Brick(b.x, b.y, b.color, b.on)
+            i++
+        })
+
+        brickcount = JSON.parse(localStorage.getItem("brickcount"))
+        balls = JSON.parse(localStorage.getItem("balls"))
+        score = JSON.parse(localStorage.getItem("score"))
+        level = JSON.parse(localStorage.getItem("level"))
+
+        paused = true
+    }
 }
