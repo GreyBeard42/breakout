@@ -35,7 +35,6 @@ function draw() {
         bricks.forEach((b) => {
             if(b.on) b.draw()
         })
-        if(frameCount%10 == 0) saveGame()
     } else {
         background(0)
         fill('white')
@@ -59,6 +58,7 @@ function draw() {
         }
     }
     data()
+    if(frameCount%10 == 0) saveGame()
 }
 
 function buildLevel() {
