@@ -1,0 +1,16 @@
+{
+  "title": "Breakout",
+  "desc": "A recreation of Atari Breakout",
+
+  "status": "archived",
+  "version": "v1.3",
+
+  "date": "11/16/2024",
+
+  "tags": [
+    "javascript",
+    "p5.js",
+    "game",
+    "retro"
+  ]
+}
